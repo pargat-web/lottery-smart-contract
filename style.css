@@ -1,0 +1,598 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #172a45 0%, #0a1528 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #e6e6e6;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Developer Banner Styling */
+.developer-banner {
+    position: relative;
+    background: rgba(13, 25, 48, 0.8);
+    width: 100%;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(78, 168, 222, 0.3);
+    z-index: 10;
+    overflow: hidden;
+}
+
+.developer-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, 
+            rgba(0, 0, 0, 0) 0%, 
+            rgba(32, 129, 195, 0.1) 25%, 
+            rgba(32, 129, 195, 0.1) 75%, 
+            rgba(0, 0, 0, 0) 100%);
+    z-index: -1;
+}
+
+.developer-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(78, 168, 222, 0.2), 
+        transparent);
+    z-index: 0;
+    animation: shimmer 5s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -150%; }
+    100% { left: 150%; }
+}
+
+.dev-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #64e0ff;
+    text-shadow: 0 0 10px rgba(100, 224, 255, 0.5),
+                 0 0 20px rgba(100, 224, 255, 0.3),
+                 0 0 30px rgba(100, 224, 255, 0.1);
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 2;
+    transform: perspective(500px) rotateX(10deg);
+}
+
+.dev-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #a0c0e8;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.dev-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.social-link {
+    color: #64e0ff;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(13, 25, 48, 0.6);
+    border: 1px solid rgba(78, 168, 222, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(78, 168, 222, 0.2);
+    transform: scale(0);
+    transition: 0.3s ease;
+    border-radius: 50%;
+}
+
+.social-link:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(100, 224, 255, 0.3);
+}
+
+.social-link:hover::before {
+    transform: scale(1);
+}
+
+/* Blockchain pattern background effect */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(8, 28, 59, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8, 28, 59, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Floating hexagons effect */
+.hex-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.hex {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(42, 90, 190, 0.1) 0%, rgba(58, 209, 186, 0.1) 100%);
+    transform: rotate(30deg);
+    animation: floatHex 15s infinite linear;
+    opacity: 0.3;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+@keyframes floatHex {
+    0% {
+        transform: rotate(30deg) translateY(0) translateX(0);
+    }
+    50% {
+        transform: rotate(210deg) translateY(40px) translateX(30px);
+    }
+    100% {
+        transform: rotate(30deg) translateY(0) translateX(0);
+    }
+}
+
+.container {
+    background-color: rgba(18, 32, 63, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 
+                0 0 20px rgba(78, 168, 222, 0.1),
+                0 0 40px rgba(78, 168, 222, 0.05);
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid rgba(78, 168, 222, 0.2);
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Tech border effect */
+.container::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        rgba(0,0,0,0) 0%,
+        rgba(78, 168, 222, 0.3) 25%, 
+        rgba(0,0,0,0) 50%,
+        rgba(78, 168, 222, 0.3) 75%,
+        rgba(0,0,0,0) 100%);
+    z-index: -1;
+    background-size: 400% 400%;
+    animation: borderGlow 8s ease infinite;
+    border-radius: 14px;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1 {
+    color: #64e0ff;
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(100, 224, 255, 0.3);
+}
+
+h2 {
+    color: #4ea8de;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(78, 168, 222, 0.1), rgba(78, 168, 222, 0.8), rgba(78, 168, 222, 0.1));
+}
+
+button {
+    margin: 10px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #3a6fc9 0%, #205bb5 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2),
+                0 0 10px rgba(78, 168, 222, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent);
+    transition: 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #4a80de 0%, #2f6dd0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25),
+                0 0 15px rgba(78, 168, 222, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#wallet-address {
+    background-color: rgba(21, 38, 72, 0.8);
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(78, 168, 222, 0.3);
+    font-family: monospace;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    word-break: break-all;
+    color: #64e0ff;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.lottery-status {
+    background-color: rgba(21, 38, 72, 0.5);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid rgba(78, 168, 222, 0.2);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(78, 168, 222, 0.2);
+}
+
+.status-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.status-label {
+    font-weight: 600;
+    color: #a0c0e8;
+}
+
+.enter-btn {
+    background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+}
+
+.enter-btn:hover {
+    background: linear-gradient(135deg, #2ebd6b 0%, #25a75c 100%);
+}
+
+.pick-winner-btn {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.pick-winner-btn:hover {
+    background: linear-gradient(135deg, #f65e50 0%, #d04233 100%);
+}
+
+/* Loading indicator - circle that resembles blockchain */
+.loading-indicator {
+    display: none;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 20px auto;
+}
+
+.loading-indicator.active {
+    display: block;
+}
+
+.loading-indicator::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #64e0ff;
+    animation: spin 1.5s linear infinite;
+}
+
+.loading-indicator::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    top: 15%;
+    left: 15%;
+    border: 3px solid transparent;
+    border-top-color: #4ea8de;
+    animation: spin 2s linear infinite reverse;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Transaction effect */
+.transaction-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.transaction-effect.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.transaction-particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #64e0ff;
+    border-radius: 50%;
+    animation: flyParticle 1.5s linear forwards;
+}
+
+@keyframes flyParticle {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Custom wallet-connected state */
+.wallet-connected #wallet-address {
+    border-color: #27ae60;
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    button {
+        padding: 10px 15px;
+        font-size: 14px;
+        margin: 8px 5px;
+    }
+    
+    .container {
+        padding: 20px;
+    }
+    
+    .block-item {
+        width: 15px;
+        height: 15px;
+        margin: 0 5px;
+    }
+    
+    .blockchain-footer::before {
+        height: 1px;
+    }
+    
+    /* Responsive styling for developer banner */
+    .dev-name {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+    
+    .dev-title {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .dev-social {
+        gap: 10px;
+    }
+    
+    .social-link {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+/* Blockchain footer - visualization of connected blocks */
+.blockchain-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    position: relative;
+}
+
+.blockchain-footer::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(78, 168, 222, 0.1), rgba(78, 168, 222, 0.8), rgba(78, 168, 222, 0.1));
+    width: 100%;
+    top: 50%;
+    z-index: 0;
+}
+
+.block-item {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #3a6fc9 0%, #205bb5 100%);
+    margin: 0 10px;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+    animation-delay: calc(var(--i, 0) * 0.5s);
+}
+
+.block-item:nth-child(1) { --i: 0; }
+.block-item:nth-child(2) { --i: 1; }
+.block-item:nth-child(3) { --i: 2; }
+.block-item:nth-child(4) { --i: 3; }
+.block-item:nth-child(5) { --i: 4; }
+
+.block-item::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    background: rgba(78, 168, 222, 0.2);
+    border-radius: 8px;
+    z-index: -1;
+    opacity: 0;
+    animation: pulseBg 2s infinite;
+    animation-delay: calc(var(--i, 0) * 0.5s);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseBg {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Make some icons glow to add tech feel */
+.fa-link, .fa-coins, .fa-chart-network {
+    color: #64e0ff;
+    text-shadow: 0 0 5px rgba(100, 224, 255, 0.5);
+}
+
+/* Add code-like data stream at the bottom */
+.container::after {
+    content: "010101110010001010100101010100010101001010101001010";
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: monospace;
+    font-size: 8px;
+    color: rgba(78, 168, 222, 0.4);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 90%;
+    text-align: center;
+}

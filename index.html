@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery DApp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Blockchain background elements -->
+    <div class="hex-bg" id="hexBackground"></div>
+    <div class="transaction-effect" id="txEffect"></div>
+    
+    <!-- Developer Info Banner -->
+    <div class="developer-banner">
+        <div class="dev-name">PARGAT SINGH</div>
+        <div class="dev-title">Blockchain Developer</div>
+        <div class="dev-social">
+            <a href="https://github.com/pargat-web" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/pargat1204/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:pargatttsinghhh@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h1><i class="fas fa-link"></i> Blockchain Lottery</h1>
+        
+        <div class="wallet-section">
+            <button onclick="connectWallet()"><i class="fas fa-wallet"></i> Connect Wallet</button>
+            <p id="wallet-address">Wallet Not Connected</p>
+        </div>
+
+        <div class="action-buttons">
+            <button class="enter-btn" onclick="enterLottery()"><i class="fas fa-coins"></i> Enter Lottery (10 wei)</button>
+            <button class="pick-winner-btn" onclick="pickWinner()"><i class="fas fa-trophy"></i> Pick Winner (Manager Only)</button>
+        </div>
+        
+        <div class="loading-indicator" id="loadingIndicator"></div>
+
+        <h2><i class="fas fa-chart-network"></i> Lottery Details</h2>
+        <div class="lottery-status">
+            <div class="status-item">
+                <span class="status-label"><i class="fas fa-users"></i> Players:</span>
+                <span id="players">0</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label"><i class="fas fa-coins"></i> Contract Balance:</span>
+                <span id="balance">0 wei</span>
+            </div>
+        </div>
+        
+        <div class="blockchain-footer">
+            <div class="block-item"></div>
+            <div class="block-item"></div>
+            <div class="block-item"></div>
+            <div class="block-item"></div>
+            <div class="block-item"></div>
+        </div>
+    </div>
+
+    <!-- ✅ Added Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+    
+    <!-- Add blockchain visual effects -->
+    <script>
+        // Create hexagon background
+        function createHexagons() {
+            const hexBg = document.getElementById('hexBackground');
+            const numberOfHexagons = 15;
+            
+            for (let i = 0; i < numberOfHexagons; i++) {
+                const hex = document.createElement('div');
+                hex.classList.add('hex');
+                
+                // Random positioning
+                const randomLeft = Math.floor(Math.random() * 100);
+                const randomTop = Math.floor(Math.random() * 100);
+                const randomDelay = Math.random() * 15;
+                const randomSize = 30 + Math.random() * 40;
+                
+                hex.style.left = `${randomLeft}%`;
+                hex.style.top = `${randomTop}%`;
+                hex.style.width = `${randomSize}px`;
+                hex.style.height = `${randomSize}px`;
+                hex.style.animationDelay = `${randomDelay}s`;
+                
+                hexBg.appendChild(hex);
+            }
+        }
+        
+        // Simulate blockchain transaction effect
+        function simulateTransaction() {
+            const txEffect = document.getElementById('txEffect');
+            txEffect.innerHTML = '';
+            txEffect.classList.add('active');
+            
+            const numberOfParticles = 20;
+            const button = event.target;
+            const buttonRect = button.getBoundingClientRect();
+            
+            const startX = buttonRect.left + buttonRect.width / 2;
+            const startY = buttonRect.top + buttonRect.height / 2;
+            
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('transaction-particle');
+                
+                // Calculate random destinations within the visible window
+                const tx = (Math.random() - 0.5) * window.innerWidth;
+                const ty = (Math.random() - 0.5) * window.innerHeight;
+                
+                particle.style.left = `${startX}px`;
+                particle.style.top = `${startY}px`;
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                
+                txEffect.appendChild(particle);
+            }
+            
+            setTimeout(() => {
+                txEffect.classList.remove('active');
+            }, 1500);
+        }
+        
+        // Show loading indicator
+        function showLoading(show) {
+            const loader = document.getElementById('loadingIndicator');
+            if (show) {
+                loader.classList.add('active');
+            } else {
+                loader.classList.remove('active');
+            }
+        }
+        
+        // Initialize effects
+        document.addEventListener('DOMContentLoaded', function() {
+            createHexagons();
+            
+            // Add click listeners for transaction effects
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', simulateTransaction);
+            });
+        });
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
